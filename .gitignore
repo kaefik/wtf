@@ -1,6 +1,13 @@
+# files for project
+src/gui/telegrambot/config.py
+*.session
+settings.db
+
 # Editors
 .vscode/
 .idea/
+
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
