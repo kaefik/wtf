@@ -13,7 +13,8 @@
 * количество кабинок
 """
 
-from datetime import datetime.datetime
+from datetime.date import datetime.datetime
+from typing import Optional
 
 from addtypes import Sex, Water
 
@@ -22,6 +23,8 @@ from addtypes import Sex, Water
 class Toilet:
 
     def __init__(self):
+        # уникальный номер
+        self.id: Optional[int] = None  # ? здесь скорее всего нужна генерация уникального номера
         self.title: str = ""
         # географические координаты - адрес
         self.loc = ""
@@ -52,6 +55,5 @@ class Toilet:
         # фотографии
         # основная фотография
         self.photo_main: str = ""  # ссылка на фотографии
-
         # активный объект или нет
         self.is_active: bool = False
