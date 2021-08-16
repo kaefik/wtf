@@ -2,34 +2,31 @@
  сущность Отзывы
 
 """
+from datetime import datetime.datetime
+from typing import Optional
+
+from addtypes import Rating
+from toilet import Toilet
 
 
 # Отзывы
 class Comment:
-    pass
-    # RATING_CHOICES = [
-    #     (0, 'Без оценки'),
-    #     (1, 'Очень плохо'),
-    #     (2, 'Плохо'),
-    #     (3, 'Удовлетворительно'),
-    #     (4, 'Хорошо'),
-    #     (5, 'Рекомендую'),
-    # ]
-    #
-    # is_active = models.BooleanField(default=True, verbose_name='Активный отзыв')
-    # # туалет к которому отзыв
-    # toilet = models.ForeignKey(Toilet, null=False, on_delete=models.PROTECT,
-    #                            verbose_name='Туалет')
-    # author = models.CharField(default="guest" ,max_length=30, verbose_name='Автор')
-    # text = models.TextField(verbose_name='Текст отзыва')
-    # # массив фотографий ??
-    # # photo = models.ImageField()
-    # rating = models.IntegerField(default=0, choices=RATING_CHOICES, verbose_name='Рейтинг')
-    # # дата публикация
-    # published = models.DateTimeField(auto_now_add=True, db_index=True,
-    #                                  verbose_name='Опубликовано')
-    #
-    # class Meta:
-    #     verbose_name_plural = 'Отзывы'
-    #     verbose_name = 'Отзыв'
-    #     ordering = ['-published']
+
+    def __init__(self):
+        # уникальный номер
+        self.id: Optional[int] = None  # ? здесь скорее всего нужна генерация уникального номера
+        # Активный отзыв
+        self.is_active: bool = False
+        # туалет к которому отзыв
+        self.toilet: Toilet = None
+        # автор
+        self.author: str = "guest"
+        # текст отзыва
+        self.text: str = ""
+        # массив фотографий ??
+        self.photo = []
+        self.rating: Rating = Rating.no
+        # дата публикации
+        self.date: datetime = datetime(2021, 01, 01)
+        # статус публикации, если False - черновик
+        self.published: bool = False
