@@ -3,7 +3,7 @@
 
 """
 from datetime import datetime
-from typing import Optional, List
+from typing import Optional, List, Dict, Any
 
 from addtypes import Rating
 from toilet import Toilet
@@ -102,3 +102,25 @@ class Comment:
     @published.setter
     def published(self, status: bool) -> None:
         self._published = status
+
+    def to_json(self) -> Dict[str, Any]:
+        """
+        преобразование в словарь
+        :return:
+        """
+        result = dict()
+        result["id"] = self.id
+        result["active"] = self.active
+        result["toilet"] = self.toilet
+        result["author"] = self.author
+        result["text"] = self.text
+        result["photo"] = self.photo
+        result["rating"] = self.rating
+        result["date"] = self.date
+        result["published"] = self.published
+
+
+if __name__ == "__main__":
+    obj = Comment()
+    obj.id = 10
+    print(obj.to_json())
