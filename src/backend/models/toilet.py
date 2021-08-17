@@ -14,9 +14,9 @@
 """
 
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Dict, Any
 
-from addtypes import Sex, Water
+from addtypes import Sex, Water, GeoCoords
 
 
 #  Туалет
@@ -27,9 +27,10 @@ class Toilet:
         self._id: Optional[int] = None  # ? здесь скорее всего нужна генерация уникального номера
         self._title: str = ""
         # географические координаты - адрес
-        self._loc = ""  # TODO: проработать географические координаты
-        # внутреннее расположение в здании
-        self._placement = ""  # TODO: проработать географические координаты
+        self._loc = GeoCoords()  # TODO: проработать географические координаты
+        # долготу и широту, latitude, longitude
+        # внутреннее расположение в здании (описание)
+        self._placement: str = ""
         # стоимость посещения
         self._price: float = 0.0
         # вода
@@ -75,21 +76,20 @@ class Toilet:
         self._title = title
 
     @property
-    def location(self):
+    def location(self) -> GeoCoords:
         return self._loc
 
     @location.setter
-    def location(self, loc):
+    def location(self, loc: GeoCoords) -> None:
         # TODO: проработать географические координаты
         self._loc = loc
 
     @property
-    def placement(self):
+    def placement(self) -> str:
         return self._placement
 
     @placement.setter
-    def placement(self, place) -> None:
-        # TODO: проработать географические координаты
+    def placement(self, place: str) -> None:
         self._placement = place
 
     @property
@@ -195,3 +195,34 @@ class Toilet:
     @active.setter
     def active(self, status: bool) -> None:
         self._active = status
+
+    def to_json(self) -> Dict[str, Any]:
+        """
+        преобразование в словарь
+        :return:
+        """
+        result = dict()
+        result["id"] = self.id
+        result["title"] = self.title
+        result["location"] = self.location
+        result["placement"] = self.placement
+        result["price"] = self.price
+        result["water"] = self.water
+        result["soap"] = self.soap
+        result["paper"] = self.paper
+        result["dryer"] = self.dryer
+        result["smell"] = self.smell
+        result["child"] = self.child
+        result["cabin"] = self.count_cabin
+        result["sex"] = self.sex
+        result["date"] = self.date
+        result["published"] = self.published
+        result["photo_main"] = self.photo
+        result["active"] = self.active
+        return result
+
+
+if __name__ == "__main__":
+    obj = Toilet()
+    obj.id = 10
+    print(obj.to_json())
