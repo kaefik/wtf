@@ -18,7 +18,7 @@ class Comment:
         # Активный отзыв
         self.is_active: bool = False
         # туалет к которому отзыв
-        self.toilet: Toilet = None
+        self.toilet: Optional[Toilet] = None
         # автор
         self.author: str = "guest"
         # текст отзыва
