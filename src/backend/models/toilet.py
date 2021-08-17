@@ -24,36 +24,126 @@ class Toilet:
 
     def __init__(self):
         # уникальный номер
-        self.id: Optional[int] = None  # ? здесь скорее всего нужна генерация уникального номера
-        self.title: str = ""
+        self._id: Optional[int] = None  # ? здесь скорее всего нужна генерация уникального номера
+        self._title: str = ""
         # географические координаты - адрес
-        self.loc = ""
+        self._loc = ""  # TODO: проработать географические координаты
         # внутреннее расположение в здании
-        self.placement = ""  # Где находится внутри
+        self._placement = ""  # TODO: проработать географические координаты
         # стоимость посещения
-        price: float = 0.0
+        self._price: float = 0.0
         # вода
-        self.water: Water = Water.no
+        self._water: Water = Water.no
         # мыло
-        self.soap: bool = False
+        self._soap: bool = False
         # туалетная бумага
-        self.paper: bool = False
+        self._paper: bool = False
         # сушка для рук
-        self.dryer: bool = False
+        self._dryer: bool = False
         # неприятный запах
-        self.smell: bool = False
+        self._smell: bool = False
         # унитаз для детей
-        self.child_toilet: bool = False
+        self._child_toilet: bool = False
         # кол-во кабинок
-        self.cabin: int = 0
+        self._cabin: int = 0
         # тип туалета ??
-        self.type_toilet: Sex = Sex.man
+        self._type_toilet: Sex = Sex.man
         # время создания объекта
-        self.date: datetime = datetime(2021, 01, 01)
+        self._date: datetime = datetime(2021, 01, 01)
         # статус опубликования туалета
-        self.published: bool = False
+        self._published: bool = False
         # фотографии
         # основная фотография
-        self.photo_main: str = ""  # ссылка на фотографии
+        self._photo_main: str = ""  # ссылка на фотографии
         # активный объект или нет
-        self.is_active: bool = False
+        self._is_active: bool = False
+
+    @property
+    def id(self) -> Optional[int]:
+        return self._id
+
+    @id.setter
+    def id(self, my_id: int) -> None:
+        self._id = my_id
+
+    @property
+    def title(self) -> str:
+        return self._title
+
+    @title.setter
+    def title(self, stitle: str) -> None:
+        self._title = stitle
+
+    @property
+    def location(self):
+        return self._loc
+
+    @location.setter
+    def location(self, loc):
+        # TODO: проработать географические координаты
+        self._loc = loc
+
+    @property
+    def placement(self):
+        return self._placement
+
+    @placement.setter
+    def placement(self, place) -> None:
+        # TODO: проработать географические координаты
+        self._placement = place
+
+    @property
+    def price(self) -> float:
+        return self._price
+
+    @price.setter
+    def price(self, new_price: float) -> None:
+        self._price = new_price
+
+    @property
+    def water(self) -> Water:
+        return self._water
+
+    @water.setter
+    def water(self, status_water: Water) -> None:
+        self._water = status_water
+
+    @property
+    def soap(self) -> bool:
+        return self._soap
+
+    @soap.setter
+    def soap(self, status: bool) -> None:
+        self._soap = status
+
+    @property
+    def paper(self) -> bool:
+        return self._paper
+
+    @paper.setter
+    def paper(self, status: bool) -> None:
+        self._paper = status
+
+    @property
+    def dryer(self) -> bool:
+        return self._dryer
+
+    @dryer.setter
+    def dryer(self, status: bool) -> None:
+        self._dryer = status
+
+    @property
+    def smell(self) -> bool:
+        return self._smell
+
+    @smell.setter
+    def smell(self, status: bool) -> None:
+        self._smell = status
+
+    @property
+    def child(self) -> bool:
+        return self._child_toilet
+
+    @child.setter
+    def child(self, status: bool) -> None:
+        self._child_toilet = status
