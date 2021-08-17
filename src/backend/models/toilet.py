@@ -9,11 +9,11 @@
 * мыло для рук (есть/нет)
 * сушилка для рук (есть/нет)
 * туалетная бумага (отдельный аппарат, в каждой кабинке есть или нет)
-* унитаз (писуар) для детей
+* унитаз (писсуар) для детей
 * количество кабинок
 """
 
-from datetime.date import datetime.datetime
+from datetime import datetime
 from typing import Optional
 
 from addtypes import Sex, Water
@@ -49,14 +49,14 @@ class Toilet:
         # тип туалета ??
         self._type_toilet: Sex = Sex.man
         # время создания объекта
-        self._date: datetime = datetime(2021, 01, 01)
+        self._date: datetime = datetime(2021, 1, 1)
         # статус опубликования туалета
         self._published: bool = False
         # фотографии
         # основная фотография
         self._photo_main: str = ""  # ссылка на фотографии
         # активный объект или нет
-        self._is_active: bool = False
+        self._active: bool = False
 
     @property
     def id(self) -> Optional[int]:
@@ -71,8 +71,8 @@ class Toilet:
         return self._title
 
     @title.setter
-    def title(self, stitle: str) -> None:
-        self._title = stitle
+    def title(self, title: str) -> None:
+        self._title = title
 
     @property
     def location(self):
@@ -147,3 +147,51 @@ class Toilet:
     @child.setter
     def child(self, status: bool) -> None:
         self._child_toilet = status
+
+    @property
+    def count_cabin(self) -> int:
+        return self._cabin
+
+    @count_cabin.setter
+    def count_cabin(self, count: int) -> None:
+        self._cabin = count
+
+    @property
+    def sex(self) -> Sex:
+        return self._type_toilet
+
+    @sex.setter
+    def sex(self, new_sex: Sex) -> None:
+        self._type_toilet = new_sex
+
+    @property
+    def date(self) -> datetime:
+        return self._date
+
+    @date.setter
+    def date(self, new_date: datetime) -> None:
+        self._date = new_date
+
+    @property
+    def published(self) -> bool:
+        return self._published
+
+    @published.setter
+    def published(self, status: bool) -> None:
+        self._published = status
+
+    @property
+    def photo(self) -> str:
+        return self._photo_main
+
+    @photo.setter
+    def photo(self, new_photo: str) -> None:
+        self._photo_main = new_photo
+
+    @property
+    def active(self) -> bool:
+        return self._active
+
+    @active.setter
+    def active(self, status: bool) -> None:
+        self._active = status
