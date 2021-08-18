@@ -119,6 +119,8 @@ class Comment:
         result["date"] = self.date
         result["published"] = self.published
 
+        return result
+
 
 if __name__ == "__main__":
     obj = Comment()
