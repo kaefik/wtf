@@ -11,8 +11,8 @@ from typing import Dict
 def test_get():
     url_get = "http://127.0.0.1:8000/get"
     s = requests.Session()
-    params = {"id": 0}
-    result = s.get(url_get) #, params=params)
+    # params = {"id": 2}
+    result = s.get(url_get)  # , params=params)
     return result
 
 

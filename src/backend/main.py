@@ -14,9 +14,12 @@ db = Database()
     description="Get random phrase from database",
     response_model=PhraseOutput,
 )
-async def get():
+async def get(id: int = -1):
     try:
-        phrase = db.get(db.get_random())
+        if id == -1:
+            phrase = db.get(db.get_random())
+        else:
+            phrase = db.get(id)
     except IndexError:
         raise HTTPException(404, "Phrase list is empty")
     return phrase

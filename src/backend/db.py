@@ -1,7 +1,10 @@
-import typing
+from typing import Dict, Optional, Union, NoReturn
 import random
 from pydantic import BaseModel
 from pydantic import Field
+
+from models.toilet import Toilet
+from models.comment import Comment
 
 
 class PhraseInput(BaseModel):
@@ -13,7 +16,7 @@ class PhraseInput(BaseModel):
 
 
 class PhraseOutput(PhraseInput):
-    id: typing.Optional[int] = None  # ID фразы в нашей базе данных.
+    id: Optional[int] = None  # ID фразы в нашей базе данных.
 
 
 class Database:
@@ -22,14 +25,14 @@ class Database:
     """
 
     def __init__(self):
-        self._items: typing.Dict[int, PhraseOutput] = {}  # id: model
+        self._items: Dict[int, PhraseOutput] = {}  # id: model
 
-    def get_random(self) -> int:
-        # Получение случайной фразы
-        print(self._items.keys())
-        return random.choice(list(self._items.keys()))
+    # def get_random(self) -> int:
+    #     # Получение случайной фразы
+    #     print(self._items.keys())
+    #     return random.choice(list(self._items.keys()))
 
-    def get(self, id: int) -> typing.Optional[PhraseOutput]:
+    def get(self, id: int) -> Optional[PhraseOutput]:
         # Получение фразы по ID
         return self._items.get(id)
 
@@ -41,7 +44,7 @@ class Database:
         self._items[phrase_out.id] = phrase_out
         return phrase_out
 
-    def delete(self, id: int) -> typing.Union[typing.NoReturn, None]:
+    def delete(self, id: int) -> Union[NoReturn, None]:
         # Удаление фразы
 
         if id in self._items:
