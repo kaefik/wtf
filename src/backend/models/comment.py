@@ -5,8 +5,8 @@
 from datetime import datetime
 from typing import Optional, List, Dict, Any
 
-from addtypes import Rating
-from toilet import Toilet
+from models.addtypes import Rating
+from models.toilet import Toilet
 
 
 # Отзывы
