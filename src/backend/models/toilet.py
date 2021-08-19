@@ -14,9 +14,11 @@
 """
 
 from datetime import datetime
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 
-from addtypes import Sex, Water, GeoCoords
+from models.addtypes import Sex, Water, GeoCoords
+
+from models.comment import Comment
 
 
 #  Туалет
@@ -24,7 +26,7 @@ class Toilet:
 
     def __init__(self):
         # уникальный номер
-        self._id: Optional[int] = None  # ? здесь скорее всего нужна генерация уникального номера
+        # self._id: Optional[int] = None  # ? здесь скорее всего нужна генерация уникального номера
         self._title: str = ""
         # географические координаты - адрес
         self._loc = GeoCoords()  # TODO: проработать географические координаты
@@ -58,14 +60,16 @@ class Toilet:
         self._photo_main: str = ""  # ссылка на фотографии
         # активный объект или нет
         self._active: bool = False
+        # отзывы к конкретному туалету
+        self._comments: List[Comment] = []
 
-    @property
-    def id(self) -> Optional[int]:
-        return self._id
-
-    @id.setter
-    def id(self, my_id: int) -> None:
-        self._id = my_id
+    # @property
+    # def id(self) -> Optional[int]:
+    #     return self._id
+    #
+    # @id.setter
+    # def id(self, my_id: int) -> None:
+    #     self._id = my_id
 
     @property
     def title(self) -> str:
@@ -220,6 +224,18 @@ class Toilet:
         result["photo_main"] = self.photo
         result["active"] = self.active
         return result
+
+    def add_comment(self, comment: Comment):
+        """
+        добавление нового отзыва к туалету
+        """
+        self._comments.append(comment)
+
+    def del_comment(self, index: int = 0):
+        """
+        удаление отзыва по номеру index
+        """
+        self._comments.pop(index)
 
 
 if __name__ == "__main__":
